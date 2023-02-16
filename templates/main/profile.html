@@ -7,7 +7,21 @@
       <title>User Profile</title>
 </head>
 <body>
-      <center>User Profile</center>
+      <center>User Profile <b>{{ name }}</b>  </center>
+
+      {% for message in messages %}
+            <p {% if message.tags %} class="{{ message.tags }}" {% endif %}> {{ message }} </p>
+      {% endfor %}
+
+      {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+            <br> <br>
+
+            {% for url in img_urls %}
+            <img src="{{url}}"></img>
+      {% endfor %}
+
+      {% endif %}
 </body>
 </html>
 

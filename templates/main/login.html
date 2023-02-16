@@ -8,5 +8,22 @@
 </head>
 <body>
       <center>Login</center>
+
+      {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                  {{ error }}
+            {% endfor %}
+      {% endif %}
+      <form action="" method="post" novalidate>
+            {% csrf_token %}
+
+            {% for field in form %}
+                  {{ field.label }} {{ field }} {{ field.errors }} <br>
+            {% endfor %}
+
+            <input type="submit" value="Login">
+      </form>
+
+      <a href="{% url 'signup' %}">Sign Up</a>
 </body>
 </html>
