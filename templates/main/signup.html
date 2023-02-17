@@ -1,16 +1,19 @@
+{% load static %}
+{% load widget_tweaks %}
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Sign Up</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-      <center>Sign Up</center>
+
+<center>Sign Up</center>
       <form action="" method="post" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
-
             {% for field in form %}
                   {{ field.label }} {{ field }} {{ field.errors }} <br>
             {% endfor %}
@@ -23,6 +26,207 @@
       {% endfor %}
 
       <a href="{% url 'login' %}">Login</a>
+  
+    </body>
+    </html> -->
 
+    
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sign In</title>
+
+  <!-- HTML -->
+
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;500;600&family=Comfortaa:wght@700&family=Inter:wght@300;400;500&family=Martian+Mono:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&family=Poppins:wght@200;300;400;500;600;700&family=Quicksand:wght@400;500;600&family=Work+Sans:wght@300;400;500;600&display=swap');
+
+    .center {
+      margin: auto;
+      width: 50%;
+      padding: 10px;
+      /*margin-top: 20px;*/
+      margin:27px auto;
+    }
+
+    body {
+      font-size: 16px !important;
+    }
+
+    center {
+      font-size: 26px !important;
+      font-weight: 800;
+      font-family: 'Quicksand';
+    }
+    .company-quicksand{
+      font-family: 'Quicksand' !important;
+   }
+   .parent_of_overlay{
+    position: relative;
+   }
+   .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .company-display-none{
+      display: block;
+  }
+  
+  </style>
+  <!-- <link rel="stylesheet" href="signup.css"> -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+			var fileInput = document.getElementById("{{ form.avatar.id_for_label }}");
+                  fileInput.style.display = 'none';
+      console.log("fileInput");
+			var previewImage = document.getElementById('avatar');
+
+			fileInput.addEventListener('change', function() {
+				var file = this.files[0];
+				if (file) {
+					var reader = new FileReader();
+					reader.addEventListener('load', function() {
+						previewImage.src = reader.result;
+					});
+					reader.readAsDataURL(file);
+				}
+			});
+		});
+  </script>
+
+</head>
+
+<body>
+
+  <div class="center block p-4 rounded-lg border-solid border-2 bg-white max-w-sm">
+
+
+    <!-- Actual form -->
+    <form id="form1" action="" method="post" enctype="multipart/form-data">
+
+      <!-- CSRF Token -->
+      {% csrf_token %}
+
+      <!-- Logo and Title -->
+      <center><a class="navbar-brand text-emerald-600" href="#!">
+          <svg class="w-10 h-10 ml-2 lg:ml-0 mr-2" xmlns="http://www.w3.org/2000/svg" version="1.1"
+            xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512"
+            x="0" y="0" viewBox="0 0 8.467 8.467" style="enable-background:new 0 0 512 512" xml:space="preserve"
+            class="">
+            <g>
+              <path fill="#10b981"
+                d="M5.465 1.216c-.91-.019-1.849.503-2.106 1.678-1.048-.357-1.994.348-1.896 1.475a1.493 1.493 0 0 0-.934 1.387c0 .829.668 1.496 1.497 1.496h1.818l-.002-1.706-.426.155c-.31.133-.538-.257-.273-.5l.807-.783c.184-.184.404-.163.567 0l.807.784c.265.242.036.632-.273.499l-.426-.155v1.706H6.44c.829 0 1.496-.667 1.496-1.496 0-.61-.362-1.132-.883-1.365 1.01-1.97-.259-3.149-1.589-3.175z"
+                data-original="#10b981" class=""></path>
+              <path fill="#0d8f6b"
+                d="M5.465 1.215c-.05 0-.106.001-.157.003C4.146 3.05 5.942 4.39 7.054 4.39c1.01-1.97-.259-3.148-1.589-3.175z"
+                data-original="#0d8f6b" class=""></path>
+            </g>
+          </svg>
+        </a></center>
+      <center class="py-1 ">Sign Up for PixelPost</center>
+
+
+      <!-- Avatar, preview and label  -->
+      <div class="form-group mb-3">
+        <center class="parent_of_overlay">
+          <img src="media/avatar/default.png" class="rounded-full w-16 mt-2 mb-2 outline outline-2 outline-gray-400" alt="Avatar" id="avatar"/>
+          <label class="overlay" for="{{ form.avatar.id_for_label }}">Adi</label>
+        </center>
+      </div>
+
+      <!-- Grid for First and last name -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group mb-3">
+          {% render_field form.first_name|add_class:"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white  delay-150 duration-300 focus:border-blue-600 outline-none" %}
+        </div>
+        <div class="form-group mb-3">
+            {% render_field form.last_name|add_class:"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600  delay-150 duration-300 outline-none" %}
+        </div>
+      </div>
+
+      <!-- Grid for Username and Gender -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group mb-3">
+          {% render_field form.username|add_class:"duration-300 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  delay-150 duration-300 ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 outline-none" %}
+        </div>
+        <div class="flex justify-center">
+          <div class="mb-3 xl:w-96">
+              {% render_field form.gender|add_class:"form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600  delay-150 duration-300 outline-none" %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Image field :: BELOW PART IS HIDDEN   -->
+       
+       {% render_field form.avatar|add_class:"company-display-none form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %}
+      <!-- Input Image field :: UPPER PART IS HIDDEN   -->
+
+
+      <!-- Email Field -->
+      <div class="form-group mb-3">
+          {% render_field form.email|add_class:"orm-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  delay-150 duration-300 ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 outline-none" %}
+      </div>
+
+      
+      <!-- Passoword 1 -->
+      <div class="form-group mb-3">
+          {% render_field form.password1|add_class:"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out  delay-150 duration-300 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 outline-none"|attr:"placeholder:Password" %}
+      </div>
+
+      <!-- Passoword 2 -->
+      <div class="form-group mb-3">
+          {% render_field form.password2|add_class:"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded   delay-150 duration-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 outline-none"|attr:"placeholder:Confirm Password" %}
+      </div>
+
+      <button type="submit"
+        class=" w-full px-6 py-2.5 bg-emerald-600 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-emerald-700 hover:shadow-lg focus:bg-emerald-700 focus:shadow-lg outline-none focus:ring-0 active:bg-emerald-800 active:shadow-lg   delay-150 duration-300 transition  ease-in-out mb-2">Sign up</button>
+
+      <button type="register"
+        class=" w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-sm leading-tight uppercase rounded  hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg  delay-150 duration-300 transition  ease-in-out">
+        <i class="fa-brands fa-google"></i> &nbsp; Register With Google</button>
+
+        <button type="register" class="text-center company-quicksand w-full px-6 py-3 bg-white-600 text-gray-600 font-medium text-md leading-tight rounded delay-150 duration-300 transition  ease-in-out">Already Have an Account ? <a href="{% url 'login' %}" class="text-lg font-bold text-emerald-600"> Login &nbsp; &nbsp; </a> </button>
+
+    </form>
+
+  </div>
+
+  </div>
+
+
+  <!-- Project -->
+  <script src="main.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </body>
+
 </html>
+    

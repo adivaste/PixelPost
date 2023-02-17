@@ -1,17 +1,27 @@
 from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from main.models import Image, Account
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
 
 
 class SignupForm(UserCreationForm):
-    gender = forms.ChoiceField(choices=[('M', 'Male'), ('F', 'Female')], widget=forms.RadioSelect)
+    # gender = forms.ChoiceField(choices=[('M', 'Male'), ('F', 'Female')], widget=forms.RadioSelect)
+    # avatar = forms.ImageField(required=True)
+
+    gender = forms.ChoiceField(choices=[('M', 'Male'), ('F', 'Female')], widget=forms.Select(attrs={'class': 'form-check-input'}))
     avatar = forms.ImageField(required=True)
+    # widget=forms.FileInput(attrs={'class': 'form-control-file'}
 
     class Meta:
         model = User
         fields  = ('username', 'email', 'first_name', 'last_name', 'gender', 'avatar')
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email Address', 'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'First Name', 'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name', 'class': 'form-control'})
+        }
 
 
     def save(self, commit=True):
@@ -25,6 +35,8 @@ class SignupForm(UserCreationForm):
                 avatar = self.cleaned_data['avatar']
             )
             account.save()
+
+    
 
 
 class UploadForm(forms.ModelForm):

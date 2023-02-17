@@ -37,6 +37,8 @@ def user_login(request):
 def user_signup(request):
     '''For user signup'''
     if request.method == 'POST':
+        print(request.POST)
+        print(request.FILES)
         form = SignupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
