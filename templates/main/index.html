@@ -1,13 +1,110 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>PixelPost</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+      <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+            tailwind.config = {
+                  theme: {
+                extend: {
+                  fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                  },
+                }
+              }
+            }
+      </script>
+      <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-      <center>Welcome to PixelPost </center>
 
+<body>
+
+<div>
+
+      <!-- Section: Design Block -->
+      <section class="mb-40">
+        <nav class="navbar navbar-expand-lg py-2 bg-white relative flex items-center w-full justify-between">
+          <div class="px-6 w-full flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+              <button
+                class="navbar-toggler border-0 py-3 lg:hidden leading-none text-xl bg-transparent text-gray-600 hover:text-gray-700 focus:text-gray-700 transition-shadow duration-150 ease-in-out mr-2"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContentY"
+                aria-controls="navbarSupportedContentY"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <!-- <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fas"
+                  class="w-5"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                  ></path>
+                </svg> -->
+              </button>
+              <a class="navbar-brand text-emerald-600" href="#!">
+                <svg class="w-8 h-8 ml-2 lg:ml-0 mr-2" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 8.467 8.467" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path fill="#10b981" d="M5.465 1.216c-.91-.019-1.849.503-2.106 1.678-1.048-.357-1.994.348-1.896 1.475a1.493 1.493 0 0 0-.934 1.387c0 .829.668 1.496 1.497 1.496h1.818l-.002-1.706-.426.155c-.31.133-.538-.257-.273-.5l.807-.783c.184-.184.404-.163.567 0l.807.784c.265.242.036.632-.273.499l-.426-.155v1.706H6.44c.829 0 1.496-.667 1.496-1.496 0-.61-.362-1.132-.883-1.365 1.01-1.97-.259-3.149-1.589-3.175z" data-original="#10b981" class=""></path><path fill="#0d8f6b" d="M5.465 1.215c-.05 0-.106.001-.157.003C4.146 3.05 5.942 4.39 7.054 4.39c1.01-1.97-.259-3.148-1.589-3.175z" data-original="#0d8f6b" class=""></path></g></svg>
+              </a>
+               <a class="company-logo nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">PixelPost</a>
+            </div>
+            <div class="flex items-center lg:ml-auto">
+                  <ul class="navbar-nav mr-auto lg:flex lg:flex-row">
+                        <li class="nav-item">
+                          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out" href="{% url 'upload' %}" data-mdb-ripple="true" data-mdb-ripple-color="light">Upload</a>
+                        </li>
+                        <li class="nav-item mb-2 lg:mb-0">
+                          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out" href="{% url 'profile' %}" data-mdb-ripple="true" data-mdb-ripple-color="light">Profile</a>
+                        </li>
+                      </ul>
+                </div>
+          </div>
+        </nav>
+    
+        <div class="px-6 py-12 md:px-12 bg-white-50 text-gray-800 text-center lg:text-left">
+          <div class="container mx-auto xl:px-32">
+            <div class="grid lg:grid-cols-2 gap-12 flex items-center">
+              <div class="mt-12 lg:mt-0">
+                <h1 class="company-title text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight mb-6">Capture, <span class="text-emerald-500">Upload</span> and <br />Share Your Memories</h1>
+                <h6>Effortlessly upload, store, and share your photos publicly or privately, and showcase them in a beautiful gallery view on our user-friendly platform</h6> <br>
+                <a  class="inline-block px-7 py-3 mr-2 bg-emerald-500 text-white font-medium text-base leading-snug rounded-lg hover:bg-emerald-600  focus:bg-emerald-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-emerald-600 active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="{% url 'login' %}" role="button">Login</a>
+                <a class="inline-block px-7 py-3 bg-gray-100 text-emerald-500 font-medium text-base leading-snug rounded-lg hover:text-emerald-500 hover:bg-gray-200 focus:bg-gray-200 outline-1 focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="{% url 'signup' %}" role="button">Register </a>
+              </div>
+              <div class="mb-12 lg:mb-0">
+                <img
+                  src="{% static 'main/img/upload.svg' %}"
+                  class="w-full rounded-lg "
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section: Design Block -->
+    
+    </div>
+    <!-- Container for demo purpose -->
+      <!-- Container for demo purpose -->
+      <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </body>
 </html>

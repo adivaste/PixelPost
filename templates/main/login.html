@@ -1,29 +1,126 @@
+{% load widget_tweaks %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Login</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sign In</title>
+  
+  <!-- HTML -->
+  
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+  
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;500;600&family=Comfortaa:wght@700&family=Inter:wght@300;400;500&family=Martian+Mono:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&family=Poppins:wght@200;300;400;500;600;700&family=Quicksand:wght@400;500;600&family=Work+Sans:wght@300;400;500;600&display=swap');
+  
+   .center {
+     margin: auto;
+     width: 50%;
+     /* border: 3px solid green; */
+     padding: 10px;
+     margin-top: 60px;
+   }
+   body{
+     font-size: 16px !important;
+   }
+   center{
+     font-size: 26px !important;
+     font-weight : 800;
+     font-family: 'Quicksand';
+   }
+  </style>
 </head>
+
 <body>
-      <center>Login</center>
+  
+  <div class="center block p-6 rounded-lg border-solid border-2  bg-white max-w-sm">
+  <form id="form1" action="" method="post" novalidate>
+      {% csrf_token %}
+      <center><a class="navbar-brand text-emerald-600" href="#!">
+            <svg class="w-8 h-8 ml-2 lg:ml-0 mr-2" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 8.467 8.467" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path fill="#10b981" d="M5.465 1.216c-.91-.019-1.849.503-2.106 1.678-1.048-.357-1.994.348-1.896 1.475a1.493 1.493 0 0 0-.934 1.387c0 .829.668 1.496 1.497 1.496h1.818l-.002-1.706-.426.155c-.31.133-.538-.257-.273-.5l.807-.783c.184-.184.404-.163.567 0l.807.784c.265.242.036.632-.273.499l-.426-.155v1.706H6.44c.829 0 1.496-.667 1.496-1.496 0-.61-.362-1.132-.883-1.365 1.01-1.97-.259-3.149-1.589-3.175z" data-original="#10b981" class=""></path><path fill="#0d8f6b" d="M5.465 1.215c-.05 0-.106.001-.157.003C4.146 3.05 5.942 4.39 7.054 4.39c1.01-1.97-.259-3.148-1.589-3.175z" data-original="#0d8f6b" class=""></path></g></svg>
+          </a></center>
+      <center>Sign In to PixelPost</center>  
+
 
       {% if form.non_field_errors %}
-            {% for error in form.non_field_errors %}
-                  {{ error }}
-            {% endfor %}
-      {% endif %}
-      <form action="" method="post" novalidate>
-            {% csrf_token %}
+      {% for error in form.non_field_errors %}
+      <div class="bg-yellow-100 rounded-lg py-3 px-3 mb-3 mt-3 text-base text-yellow-700 inline-flex items-center w-full" role="alert">
+        Please enter a correct username and password both are case-sensitive.
+      </div>
+      
+      {% endfor %}
+{% endif %}
+  <br>
+    <div class="form-group mb-6">
+      <label for="{{ form.username.id_for_label }}" class="form-label inline-block mb-2 text-gray-700">{{ form.username.label }}</label>
+      {% render_field form.username|add_class:"form-control block w-full px-3 py-1.5 text-base font-small text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out duration-300 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 outline-none" %}
+    </div>
+    <div class="form-group mb-6">
+      <label for="{{ form.password.id_for_label }}" class="form-label inline-block mb-2 text-gray-700">{{ form.password.label }}</label>
+      {% render_field form.password|add_class:"form-control block w-full px-3 py-1.5 text-base font-small text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out duration-300 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 outline-none" %}
+    </div>
+    <div class="flex justify-between items-center mb-6">
+      <div class="form-group form-check">
+        <input type="checkbox"
+          class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-emerald-600 checked:border-blue-600 outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+          id="exampleCheck2">
+        <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">Remember me</label>
+      </div>
+      <a href="#!"
+        class="text-emerald-600 hover:text-emreald-700 focus:text-emerald-700 transition duration-1000 ease-in-out">Forgot
+        password?</a>
+    </div>
+    <button type="submit" class=" w-full px-6 py-2.5 bg-emerald-600 text-white font-medium text-base leading-tight rounded hover:bg-emreald-700 hover:shadow-lg focus:bg-emreald-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-emreald-800 active:shadow-lg transition duration-150 ease-in-out">Sign in</button>
+    <p class="text-gray-800 mt-6 text-center">Not a member? <a href="{% url 'signup' %}"
+        class="text-emerald-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">Register</a>
+    </p>
+  </form>
+</div>
 
-            {% for field in form %}
-                  {{ field.label }} {{ field }} {{ field.errors }} <br>
-            {% endfor %}
 
-            <input type="submit" value="Login">
-      </form>
-
-      <a href="{% url 'signup' %}">Sign Up</a>
+  <!-- Project -->
+  <script src="main.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+<!-- {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+            {{ error }}
+      {% endfor %}
+{% endif %}
+<form action="" method="post" novalidate>
+      {% csrf_token %}
+
+      {% for field in form %}
+            {{ field.label }} {{ field }} {{ field.errors }} <br>
+      {% endfor %}
+
+      <input type="submit" value="Login">
+</form> -->
+
+<!-- <a href="{% url 'signup' %}">Sign Up</a> -->
