@@ -1,3 +1,6 @@
+<!-- Files  -->
+{% load widget_tweaks %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,23 +8,122 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Upload</title>
+      <title>PixelPost</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+      <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+      <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+            rel="stylesheet">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+            tailwind.config = {
+                  theme: {
+                        extend: {
+                              fontFamily: {
+                                    sans: ['Inter', 'sans-serif'],
+                              },
+                        }
+                  }
+            }
+      </script>
 </head>
 
 <body>
-      <center>Upload Images</center>
+
+      <div>
+
+            <!-- Section: Design Block -->
+            <section >
+                  <nav class="navbar navbar-expand-lg py-2 bg-white relative flex items-center w-full justify-between">
+                        <div class="px-6 w-full flex flex-wrap items-center justify-between">
+                              <div class="flex items-center">
+                                    <button
+                                          class="navbar-toggler border-0 py-3 lg:hidden leading-none text-xl bg-transparent text-gray-600 hover:text-gray-700 focus:text-gray-700 transition-shadow duration-150 ease-in-out mr-2"
+                                          type="button" data-bs-toggle="collapse"
+                                          data-bs-target="#navbarSupportedContentY"
+                                          aria-controls="navbarSupportedContentY" aria-expanded="false"
+                                          aria-label="Toggle navigation">
+                                    </button>
+                                    <a class="navbar-brand text-emerald-600" href="#!">
+                                          <svg class="w-8 h-8 ml-2 lg:ml-0 mr-2" xmlns="http://www.w3.org/2000/svg"
+                                                version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0"
+                                                y="0" viewBox="0 0 8.467 8.467"
+                                                style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                                                <g>
+                                                      <path fill="#10b981"
+                                                            d="M5.465 1.216c-.91-.019-1.849.503-2.106 1.678-1.048-.357-1.994.348-1.896 1.475a1.493 1.493 0 0 0-.934 1.387c0 .829.668 1.496 1.497 1.496h1.818l-.002-1.706-.426.155c-.31.133-.538-.257-.273-.5l.807-.783c.184-.184.404-.163.567 0l.807.784c.265.242.036.632-.273.499l-.426-.155v1.706H6.44c.829 0 1.496-.667 1.496-1.496 0-.61-.362-1.132-.883-1.365 1.01-1.97-.259-3.149-1.589-3.175z"
+                                                            data-original="#10b981" class=""></path>
+                                                      <path fill="#0d8f6b"
+                                                            d="M5.465 1.215c-.05 0-.106.001-.157.003C4.146 3.05 5.942 4.39 7.054 4.39c1.01-1.97-.259-3.148-1.589-3.175z"
+                                                            data-original="#0d8f6b" class=""></path>
+                                                </g>
+                                          </svg>
+                                    </a>
+                                    <a class="company-logo nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+                                          href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">PixelPost</a>
+                              </div>
+                              <div class="flex items-center lg:ml-auto">
+                                    <ul class="navbar-nav mr-auto lg:flex lg:flex-row">
+                                          <li class="nav-item">
+                                                <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+                                                      href="{% url 'upload' %}" data-mdb-ripple="true"
+                                                      data-mdb-ripple-color="light">Upload</a>
+                                          </li>
+                                          <li class="nav-item mb-2 lg:mb-0">
+                                                <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+                                                      href="{% url 'profile' %}" data-mdb-ripple="true"
+                                                      data-mdb-ripple-color="light">Profile</a>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </nav>
+            </section>
+      </div>
+
+      <h3 class="text-center p-5 font-medium leading-tight text-3xl mt-0 mb-2 text-gray-700">Upload Images Seamlessly </h3>
       <form action="" method="post" novalidate enctype="multipart/form-data">
-            {% csrf_token %}
+                  {% csrf_token %}
+      <div class="mx-auto max-w-xl">
+      <div class="form-group mb-3">
+            {% render_field form.title|add_class:"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white  delay-150 duration-300 focus:border-blue-600 outline-none" %}
+      </div>
+      <div class="form-group mb-3">
+            {% render_field form.description|add_class:"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white  delay-150 duration-300 focus:border-blue-600 outline-none" %}
+      </div>
+      <div class="form-group mb-3">
+      {% render_field form.image|add_class:"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %}
+     </div>
 
-            {% for field in form %}
-            {{ field.label }} {{ field }} {{ field.errors }} <br>
-            {% endfor %}
+     <div class="flex space-x-2 justify-center">
+      <button
+        type="submit"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="inline-block px-6 py-2.5 bg-emerald-600 text-white font-medium text-md leading-tight rounded shadow-md hover:bg-emerald-700 hover:shadow-lg focus:bg-emerald-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+      >Upload Images</button>
+    </div>
+</form>
 
-            <input type="submit" value="Upload">
-      </form>
+
+{% if messages %}
+<div class="bg-green-100 rounded-lg py-3 px-4 my-2 text-base text-green-700 inline-flex items-center w-full" role="alert">
+      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+      </svg>
       {% for message in messages %}
-            <p {% if message.tags %} class="{{ message.tags }}" {% endif %}> {{ message }} </p>
-      {% endfor %}
-</body>
+      {{ message }}
+{% endfor %}
+{% endif %}
 
-</html>
+    </div>
+
+
+
+</div>
+
