@@ -10,7 +10,7 @@ class SignupForm(UserCreationForm):
     # avatar = forms.ImageField(required=True)
 
     gender = forms.ChoiceField(choices=[('M', 'Male'), ('F', 'Female')], widget=forms.Select(attrs={'class': 'form-check-input'}))
-    avatar = forms.ImageField(required=True)
+    avatar = forms.ImageField(required=False)
     # widget=forms.FileInput(attrs={'class': 'form-control-file'}
 
     class Meta:

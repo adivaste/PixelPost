@@ -1,30 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>User Profile</title>
 </head>
+
 <body>
-      <center>User Profile <b>{{ name }}</b>  </center>
+      <center>User Profile <b>{{ name }}</b> </center>
 
       {% for message in messages %}
-            <p {% if message.tags %} class="{{ message.tags }}" {% endif %}> {{ message }} </p>
+      <p {% if message.tags %} class="{{ message.tags }}" {% endif %}> {{ message }} </p>
       {% endfor %}
 
       {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}">Logout</a>
-            <br> <br>
+      <a href="{% url 'logout' %}">Logout</a>
+      <br> <br>
 
-            {% for url in img_urls %}
-            <img src="{{url}}"></img>
-      {% endfor %}
+
+      <section class="overflow-hidden text-gray-700 my-4">
+            <div class="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
+      <h4 class="font-medium py-6 leading-tight text-3xl mt-0 mb-2 text-black-600">Recent Uploads : </h4>
+
+                  <div class="flex border-2 p-4 border-gray-600 rounded-lg border-dashed flex-wrap -m-1 md:-m-2">
+                        
+                        {% for url in img_urls %}
+                        <div class="flex flex-wrap w-1/3">
+
+                              <div class="h-48 w-96 p-1 md:p-2">
+                                    <img alt="gallery" class="border-[1.5px] border-gray-200 rounded-md border-block object-cover object-center w-full h-full rounded-lg"
+                                          src="{{url}}">
+                              </div>
+                        </div>
+                              {% endfor %}
+                  </div>
+            </div>
+      </section>
+
 
       {% endif %}
+  <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+  <script src="main.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/popper.js@1"></script>
+  <script src="https://unpkg.com/tippy.js@5"></script>
 </body>
-</html>
 
+</html>
 
 
 <!-- Mode private / public -->
