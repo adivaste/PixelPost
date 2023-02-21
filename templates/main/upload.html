@@ -48,7 +48,7 @@
                                           aria-controls="navbarSupportedContentY" aria-expanded="false"
                                           aria-label="Toggle navigation">
                                     </button>
-                                    <a class="navbar-brand text-emerald-600" href="#!">
+                                    <a class="navbar-brand text-emerald-600" href="{% url 'index' %}">
                                           <svg class="w-8 h-8 ml-2 lg:ml-0 mr-2" xmlns="http://www.w3.org/2000/svg"
                                                 version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                                                 xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0"
@@ -97,7 +97,9 @@
             {% render_field form.description|add_class:"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white  delay-150 duration-300 focus:border-blue-600 outline-none"|attr:"placeholder=Description"  %}
       </div>
       <div class="form-group mb-3">
-      {% render_field form.image|add_class:"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"%}
+      {% render_field form.image|add_class:"relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-neutral-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out file:-mx-3 file:-my-1.5 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-1.5 file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[margin-inline-end:0.75rem] file:[border-inline-end-width:1px] hover:file:bg-white-200 focus:border-primary focus:bg-white focus:text-neutral-700 focus:shadow-[0_0_0_1px] focus:shadow-primary focus:outline-none dark:bg-transparent dark:text-neutral-200 dark:focus:bg-transparent" %}
+
+      <!-- form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none -->
      </div>
 
      <div class="flex space-x-2 justify-center">
@@ -105,8 +107,8 @@
         type="submit"
         data-mdb-ripple="true"
         data-mdb-ripple-color="light"
-        class="inline-block px-6 py-2.5 bg-emerald-600 text-white font-medium text-md leading-tight rounded shadow-md hover:bg-emerald-700 hover:shadow-lg focus:bg-emerald-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-      >Upload Images</button>
+        class="inline-block px-6 py-2.5 bg-emerald-600 text-white font-medium text-md leading-tight rounded hover:bg-emerald-700 hover:shadow-lg focus:bg-emerald-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+      ><i class="fa-solid fa-cloud-arrow-up"></i> Upload Images</button>
 
     </div>
 </form>

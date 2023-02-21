@@ -140,7 +140,7 @@
       {% csrf_token %}
 
       <!-- Logo and Title -->
-      <center><a class="navbar-brand text-emerald-600" href="#!">
+      <center><a class="navbar-brand text-emerald-600" href="{% url 'index' %}">
           <svg class="w-10 h-10 ml-2 lg:ml-0 mr-2" xmlns="http://www.w3.org/2000/svg" version="1.1"
             xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512"
             x="0" y="0" viewBox="0 0 8.467 8.467" style="enable-background:new 0 0 512 512" xml:space="preserve"
@@ -281,30 +281,17 @@
 
   {% if form.errors %}
         <script>
-          console.log("hhihihhigf")
-          console.log(" {{ form.non_field_errors.as_text}} ")
-
-          console.log("{{ form.avatar.id_for_label }}")
           tippy('#id_password1', {
             content: 'Password is required',
             showOnCreate: true,
             interactive:true,
           });
           tippy('#id_password2', {
-            content: 'Password is required',
+            content: 'Confirm Your Password ',
             showOnCreate: true,
             interactive:true,
           });
-          tippy('#id_username', {
-            content: 'Username is required',
-            showOnCreate: true,
-            interactive:true,
-          });   
-          tippy('#avatar', {
-            content: 'Upload Avatar here',
-            showOnCreate: true,
-            interactive:true,
-          });  
+         
         </script>
   {% endif %}
   <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
