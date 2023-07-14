@@ -54,12 +54,14 @@ def user_logout(request):
 
 def profile(request):
     '''For user profile'''
-    if request.user.is_authenticated :
+    if request.user.is_authenticated:
         all_image_objects = Image.objects.filter(account=get_user_model().objects.get(id=request.user.id).account)
-        img_urls = [image_obj.image.url for image_obj in all_image_objects]
-        return render(request, 'main/profile.html', {'name' : request.user , 'img_urls' : img_urls})
+
+        image_data = [{'url': image_obj.image.url, 'title': image_obj.title} for image_obj in all_image_objects]
+        return render(request, 'main/profile.html', {'name': request.user, 'image_data': image_data})
     else:
         return HttpResponseRedirect('/login')
+
 
 def upload(request):
     '''For upload images'''
