@@ -100,6 +100,7 @@ def upload(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = UploadForm(request.POST, request.FILES)
+            form.instance.request = request
             if form.is_valid():
                 form.save(user=request.user)
                 messages.success(request, "Image uploaded successfully!")
