@@ -52,28 +52,61 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/login')
 
+# def profile(request):
+#     '''For user profile'''
+#     if request.user.is_authenticated:
+#         all_image_objects = Image.objects.filter(account=get_user_model().objects.get(id=request.user.id).account)
+
+#         image_data = [{'url': image_obj.image.url, 'title': image_obj.title} for image_obj in all_image_objects]
+#         return render(request, 'main/profile.html', {'name': request.user, 'image_data': image_data})
+#     else:
+#         return HttpResponseRedirect('/login')
+from django.db.models import Q
+
 def profile(request):
     '''For user profile'''
     if request.user.is_authenticated:
+        query = request.GET.get('search')  # Get the search query from the request
         all_image_objects = Image.objects.filter(account=get_user_model().objects.get(id=request.user.id).account)
-
-        image_data = [{'url': image_obj.image.url, 'title': image_obj.title} for image_obj in all_image_objects]
+        
+        if query:
+            # Filter images based on labels containing the search query
+            all_image_objects = all_image_objects.filter(labels__name__icontains=query)
+        
+        image_data = [{'url': image_obj.image.url, 'title': image_obj.title, 'description': image_obj.description} for image_obj in all_image_objects]
         return render(request, 'main/profile.html', {'name': request.user, 'image_data': image_data})
     else:
         return HttpResponseRedirect('/login')
 
 
+
+# def upload(request):
+#     '''For upload images'''
+#     if request.user.is_authenticated:
+#         if request.method == 'POST':
+#             form = UploadForm(request.POST, request.FILES)
+#             if form.is_valid():
+#                 form.save(user=request.user)
+#                 messages.success(request, "Image Uploaded Successfully !")
+#         else:
+#             form = UploadForm()
+#     else:
+#         return HttpResponseRedirect('/login')
+
+#     return render(request, 'main/upload.html', {'form':form})
+
+# FROM CHAT
 def upload(request):
-    '''For upload images'''
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = UploadForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save(user=request.user)
-                messages.success(request, "Image Uploaded Successfully !")
+                messages.success(request, "Image uploaded successfully!")
+                return HttpResponseRedirect('/profile')
         else:
             form = UploadForm()
     else:
         return HttpResponseRedirect('/login')
 
-    return render(request, 'main/upload.html', {'form':form})
+    return render(request, 'main/upload.html', {'form': form})
