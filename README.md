@@ -13,13 +13,14 @@ PixelPost is a web application for sharing and organizing images. Users can crea
 
 ## Technologies Used
 
-- Python
+- Python3
 - Django Web Framework
 - HTML/CSS
 - JavaScript
 - Cloudinary (for image hosting)
-- PostgreSQL (database)
-- Heroku (deployment)
+- Imagaa AI ( for image labelling)
+- Sqlite3 (database)
+- Google Cloud Console (deployment)
 
 ## Setup Instructions
 
@@ -27,3 +28,26 @@ PixelPost is a web application for sharing and organizing images. Users can crea
 
    ```shell
    git clone https://github.com/your-username/pixelpost.git
+2. Install the required dependencies:
+   
+   ```shell
+   pip install -r requirements.txt
+3. Configure the database settings in settings.py. Update the DATABASES dictionary with your database details.
+4. Configure the Cloudinary and Imagaa AI settings in forms.py. Update the CLOUDINARY dictionary with your Cloudinary credentials, and also add the ACEESS_TOKEN and ACCESS_SECRET of Imagaa AI.
+5. Run the database migrations:
+   ```shell
+   python manage.py migrate
+6. Start the development server:
+   ```shell
+   python manage.py runserver
+7. Open your web browser and access the application at http://localhost:8000/.
+
+## Deployment
+The application can be deployed to a platform like Heroku using the provided Procfile and runtime.txt files. Refer to the platform's documentation for deployment instructions.
+
+## Contributing
+Contributions to the project are welcome. If you find any bugs or have suggestions for improvement, please open an issue or submit a pull request.
+
+## License
+This project is licensed under the MIT License.
+
